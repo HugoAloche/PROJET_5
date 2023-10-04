@@ -1,1 +1,4 @@
-note.txt
+vendor/
+var/
+.php_cs.cache
+.env
