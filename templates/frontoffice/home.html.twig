@@ -1,8 +1,25 @@
 {% extends "base.html.twig" %}
 {% block title %}Page d'accueil
 {% endblock %}
+{% block pageTitle %}Bienvenu chez vous !
+{% endblock %}
 {% block content %}
-	<main>
-		main
-	</main>
+	<section>
+		<h1>Hugo ALoche,<br>le développeur qu'il vous faut !</h1>
+	</section>
+	<section>
+		<pre>
+			{{ dump(articles) }}
+		</pre>
+		{% for article in articles %}
+			<article>
+				<div class="article_header">
+					<img src="/images/{{article.src}}" alt="{{article.alt}}">
+					<p>{{article.author}}<br>{{article.created_at}}</p>
+				</div>items
+				<p class="article_chapo">{{article.chapo}}</p>
+				<button data-route="{{article.route}}">Voir plus</button>
+			</article>
+		{% endfor %}
+	</section>
 {% endblock %}

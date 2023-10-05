@@ -10,7 +10,17 @@
 	</head>
 	<body>
 		<header>
-			header
+			<div>
+				<img src="../public/images/logo.png" alt="Logo du blog">
+				<p>Hugo Aloche</p>
+			</div>
+			<p>
+				{% block pageTitle %}{% endblock %}
+			</p>
+			<div>
+				<button>Se connecter</button>
+				<button>S'inscrire</button>
+			</div>
 		</header>
 		<main>
 			{% block content %}{% endblock %}

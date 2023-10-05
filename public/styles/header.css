@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2% 4%;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
