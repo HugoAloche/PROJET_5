@@ -10,13 +10,46 @@
 	</head>
 	<body>
 		<header>
-			header
+			<div>
+				<img src="../public/images/logo.png" alt="Logo du blog">
+				<p>Hugo Aloche</p>
+			</div>
+			<p>
+				{% block pageTitle %}{% endblock %}
+			</p>
+			<div>
+				<button>Se connecter</button>
+				<button>S'inscrire</button>
+			</div>
 		</header>
 		<main>
 			{% block content %}{% endblock %}
 		</main>
 		<footer>
-			footer
+			<ul>
+				<li>
+					<strong>Mes infos :</strong>
+				</li>
+				<li>Mon CV</li>
+				<li>Linkedin</li>
+				<li>Github</li>
+			</ul>
+			<ul>
+				<li>
+					<strong>Me contacter :</strong>
+				</li>
+				<li>test@gmpail.com</li>
+				<li>06.06.06.06.06</li>
+			</ul>
+			<ul>
+				<li>
+					<strong>Vous recherchez  peut-être :</strong>
+				</li>
+				<li>Tous mes articles</li>
+				<li>Se connecter</li>
+				<li>S'inscrire</li>
+				<li>Page d'administration</li>
+			</ul>
 		</footer>
 	</body>
 	<script src="/scripts/index.js"></script>

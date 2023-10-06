@@ -18,6 +18,32 @@ final class HomeController
     {
         $database = new Database();
         $database->connect();
-        return new Response($this->view->render(['template' => 'home']));
+        // TODO à créer et à importer depuis un repo
+        $articles = [
+            [
+                'id' => '1',
+                'title' => 'Article 1',
+                'chapo' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                'author' => 'John Doe',
+                'created_at' => '2021-01-01 12:00:00',
+                'src' => 'source.png',
+                'alt' => 'alt'
+            ],
+            [
+                'id' => '2',
+                'title' => 'Article 2',
+                'chapo' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                'author' => 'John Doe',
+                'created_at' => '2021-01-01 12:00:00',
+                'src' => 'source.png',
+                'alt' => 'alt'
+            ]
+        ];
+        return new Response($this->view->render([
+            'template' => 'home',
+            'data' => [
+                'articles' => $articles
+            ]
+        ]));
     }
 }
