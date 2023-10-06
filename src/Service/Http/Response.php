@@ -13,9 +13,10 @@ final class Response
     ) {
     }
 
-    public function send(): void
+    public function send(): int
     {
-        echo $this->statusCode . ' ' . implode(',', $this->headers);
+        // echo $this->statusCode . ' ' . implode(',', $this->headers);
         echo $this->content;
+        return http_response_code($this->statusCode);
     }
 }

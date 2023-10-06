@@ -1,1 +1,18 @@
-u
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    padding: 2% 4%;
+    background-color: rgb(78, 78, 78);
+    color: white;
+}
+
+footer ul li:not(:first-child) {
+    padding-left: 16px;
+}
+
+footer ul li:not(:first-child) {
+    padding-top: 16px;
+}

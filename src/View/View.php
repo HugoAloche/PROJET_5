@@ -7,7 +7,6 @@ namespace App\View;
 use Twig\Environment;
 use App\Service\Http\Session\Session;
 use Twig\Loader\FilesystemLoader;
-use Twig\Extension\DebugExtension;
 
 final class View
 {
@@ -16,10 +15,7 @@ final class View
     public function __construct(private readonly Session $session)
     {
         $loader = new FilesystemLoader('../templates');
-        $this->twig = new Environment($loader, [
-            'debug' => true
-        ]);
-        $this->twig > addExtenssion(new DebugExtension);
+        $this->twig = new Environment($loader);
     }
 
     public function render(array $data): string

@@ -16,10 +16,12 @@ final class HomeController
 
     public function index(): Response
     {
-        //$database = new Database();
-        //$database->connect();
+        $database = new Database();
+        $database->connect();
+        // TODO à créer et à importer depuis un repo
         $articles = [
             [
+                'id' => '1',
                 'title' => 'Article 1',
                 'chapo' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
                 'author' => 'John Doe',
@@ -28,15 +30,8 @@ final class HomeController
                 'alt' => 'alt'
             ],
             [
+                'id' => '2',
                 'title' => 'Article 2',
-                'chapo' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-                'author' => 'John Doe',
-                'created_at' => '2021-01-01 12:00:00',
-                'src' => 'source.png',
-                'alt' => 'alt'
-            ],
-            [
-                'title' => 'Article 3',
                 'chapo' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
                 'author' => 'John Doe',
                 'created_at' => '2021-01-01 12:00:00',
@@ -44,7 +39,11 @@ final class HomeController
                 'alt' => 'alt'
             ]
         ];
-        var_dump($articles);
-        return new Response($this->view->render(['template' => 'home', 'articles' => $articles]));
+        return new Response($this->view->render([
+            'template' => 'home',
+            'data' => [
+                'articles' => $articles
+            ]
+        ]));
     }
 }

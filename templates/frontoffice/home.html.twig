@@ -7,19 +7,46 @@
 	<section>
 		<h1>Hugo ALoche,<br>le développeur qu'il vous faut !</h1>
 	</section>
-	<section>
-		<pre>
-			{{ dump(articles) }}
-		</pre>
+	<section class="section_articles">
 		{% for article in articles %}
 			<article>
 				<div class="article_header">
 					<img src="/images/{{article.src}}" alt="{{article.alt}}">
 					<p>{{article.author}}<br>{{article.created_at}}</p>
-				</div>items
+				</div>
 				<p class="article_chapo">{{article.chapo}}</p>
-				<button data-route="{{article.route}}">Voir plus</button>
+				<button>
+					<a href="index.php?action=article&id={{article.id}}">Voir plus</a>
+				</button>
 			</article>
 		{% endfor %}
+	</section>
+	<section>
+		<h2>Me contacter</h2>
+		<form>
+			<div class="form_row">
+				<div class="form_col">
+					<label for="prenom">Prénom</label>
+					<input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required>
+				</div>
+				<div class="form_col">
+					<label for="nom">Nom</label>
+					<input type="text" name="nom" id="nom" placeholder="Votre nom" required>
+				</div>
+			</div>
+			<div class="form_col">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email" placeholder="Votre email" required>
+			</div>
+			<div class="form_col">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" placeholder="Votre message" required></textarea>
+			</div>
+			<div class="form_row">
+				<input type="checkbox" name="rgpd" id="rgpd" required>
+				<label for="rgpd">J'accepte que mes données soient utilisées pour me recontacter</label>
+			</div>
+			<button type="submit">Envoyer</button>
+		</form>
 	</section>
 {% endblock %}

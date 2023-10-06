@@ -34,6 +34,6 @@ final class Router
             return $controller->index();
         }
 
-        return new Response("Error 404 - cette page n'existe pas<br><a href='index.php?action=home'>Aller Ici</a>", 404);
+        return new Response("Error 404 - la page : <b>{$this->request->query()->get('action')}</b> n'existe pas.<br><a href='index.php?action=home'>Aller Ici</a>", 404);
     }
 }
