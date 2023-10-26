@@ -11,15 +11,26 @@
 	<body>
 		<header>
 			<div>
-				<img src="../public/images/logo.png" alt="Logo du blog">
+				<a href="index.php?action=home">
+					<img src="/images/logo.png" alt="Logo du blog">
+				</a>
 				<p>Hugo Aloche</p>
 			</div>
-			<p>
-				{% block pageTitle %}{% endblock %}
+			<p class="header_title_errors_container"> {% block pageTitle %}{% endblock %}
+				{% for error in errors %}
+					<span class="error">{{error}}</span>
+				{% endfor %}
+				{% for success in success %}
+					<span class="success">{{success}}</span>
+				{% endfor %}
 			</p>
 			<div>
-				<button>Se connecter</button>
-				<button>S'inscrire</button>
+				<a href="index.php?action=signin">
+					<button>Se connecter</button>
+				</a>
+				<a href="index.php?action=signup">
+					<button>S'inscrire</button>
+				</a>
 			</div>
 		</header>
 		<main>
@@ -30,25 +41,43 @@
 				<li>
 					<strong>Mes infos :</strong>
 				</li>
-				<li>Mon CV</li>
-				<li>Linkedin</li>
-				<li>Github</li>
+				<li>
+					<a href="/pdf/cv.pdf" target="_blank">Mon CV</a>
+				</li>
+				<li>
+					<a href="https://fr.linkedin.com" target="_blank">Linkedin</a>
+				</li>
+				<li>
+					<a href="https://github.com/HugoAloche" target="_blank">Github</a>
+				</li>
 			</ul>
 			<ul>
 				<li>
 					<strong>Me contacter :</strong>
 				</li>
-				<li>test@gmpail.com</li>
-				<li>06.06.06.06.06</li>
+				<li>
+					<a href="mailto:ha@gmail.com">ha@gmail.com</a>
+				</li>
+				<li>
+					<a href="tel:+33606060606">06.06.06.06.06</a>
+				</li>
 			</ul>
 			<ul>
 				<li>
 					<strong>Vous recherchez  peut-être :</strong>
 				</li>
-				<li>Tous mes articles</li>
-				<li>Se connecter</li>
-				<li>S'inscrire</li>
-				<li>Page d'administration</li>
+				<li>
+					<a href="index.php?action=allArticles">Tous mes articles</a>
+				</li>
+				<li>
+					<a href="index.php?action=signin">Se connecter</a>
+				</li>
+				<li>
+					<a href="index.php?action=signup">S'inscrire</a>
+				</li>
+				<li>
+					<a href="index.php?action=admin">Page d'administration</a>
+				</li>
 			</ul>
 		</footer>
 	</body>

@@ -1,6 +1,6 @@
 header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 2% 4%;
     background-color: rgb(255, 255, 255);
@@ -23,4 +23,11 @@ header div {
     justify-content: center;
     gap: 35px;
     flex-wrap: wrap;
+}
+
+header .header_title_errors_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
 }

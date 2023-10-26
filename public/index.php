@@ -8,7 +8,8 @@ use App\Service\DotEnv;
 use App\Service\Router;
 use App\Service\Http\Request;
 
-(new DotEnv('../.env'))->load();
+$dotEnv = new DotEnv('../.env');
+$dotEnv->load();
 
 if (getenv('APP_ENV') === 'dev') {
     $whoops = new \Whoops\Run();
