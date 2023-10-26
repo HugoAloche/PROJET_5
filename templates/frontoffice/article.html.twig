@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block title %}L'article :
+{% endblock %}
+{% block pageTitle %}L'article :
+	{{article.title}}
+{% endblock %}
+{% block content %}
+	<section>
+		<h1>article</h1>
+		<p>{{article.content}}</p>
+	</section>
+{% endblock %}

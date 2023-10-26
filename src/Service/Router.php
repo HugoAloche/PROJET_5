@@ -9,6 +9,9 @@ use App\Service\Http\Response;
 use App\Service\Http\Session\Session;
 use App\Service\Database;
 use App\Controller\Frontoffice\HomeController;
+use App\Controller\Frontoffice\ArticleController;
+use App\Service\FormValidator\ContactFormValidator;
+use App\Model\ArticleRepository;
 use App\View\View;
 
 final class Router
@@ -30,8 +33,12 @@ final class Router
 
         // *** @Route http://localhost:8000/?action=home ***
         if ($action === 'home') {
-            $controller = new HomeController($this->view);
-            return $controller->index();
+            $this->database->connect();
+            $controller = new HomeController($this->view, new ContactFormValidator($this->request, [], []), new ArticleRepository($this->database->connect()));
+            return $controller->index($this->request);
+        } elseif ($action === 'article') {
+            $controller = new ArticleController($this->view, new ArticleRepository($this->database->connect()));
+            return $controller->index($this->request);
         }
 
         return new Response("Error 404 - la page : <b>{$this->request->query()->get('action')}</b> n'existe pas.<br><a href='index.php?action=home'>Aller Ici</a>", 404);
