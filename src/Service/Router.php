@@ -10,9 +10,10 @@ use App\Service\Http\Session\Session;
 use App\Service\Database;
 use App\Controller\Frontoffice\HomeController;
 use App\Controller\Frontoffice\ArticleController;
-use App\Service\FormValidator\ContactFormValidator;
+use App\Service\FormValidator\ContactValidator;
 use App\Model\ArticleRepository;
 use App\View\View;
+use App\Service\SendEmail;
 
 final class Router
 {
@@ -34,10 +35,10 @@ final class Router
         // *** @Route http://localhost:8000/?action=home ***
         if ($action === 'home') {
             $this->database->connect();
-            $controller = new HomeController($this->view, new ContactFormValidator($this->request, [], []), new ArticleRepository($this->database->connect()));
+            $controller = new HomeController($this->view, $this->session, new ContactValidator($this->request, [], []), new ArticleRepository($this->database), new SendEmail($this->request));
             return $controller->index($this->request);
         } elseif ($action === 'article') {
-            $controller = new ArticleController($this->view, new ArticleRepository($this->database->connect()));
+            $controller = new ArticleController($this->view, new ArticleRepository($this->database));
             return $controller->index($this->request);
         }
 

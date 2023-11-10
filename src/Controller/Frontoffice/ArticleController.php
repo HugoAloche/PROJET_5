@@ -19,9 +19,7 @@ final class ArticleController
         return new Response($this->view->render([
             'template' => 'article',
             'data' => [
-                'article' => $article,
-                'errors' => [],
-                'success' => []
+                'article' => $article
             ]
         ]));
     }

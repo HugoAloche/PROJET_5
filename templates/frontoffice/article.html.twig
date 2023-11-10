@@ -5,8 +5,42 @@
 	{{article.title}}
 {% endblock %}
 {% block content %}
-	<section>
-		<h1>article</h1>
-		<p>{{article.content}}</p>
+	<section class="article_container">
+		<article>
+			<h1>{{article.title}}</h1>
+			<img src="https://picsum.photos/1920/1080" alt="">
+			<p class="article_content">{{article.content}}</p>
+		</article>
+	</section>
+	<section class="comments_container">
+		<div class="comment">
+			<img src="https://picsum.photos/64" alt="">
+			<div>
+				<p>
+					<strong>Auteur</strong>
+					-
+					<strong>Date</strong>
+				</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, mollitia temporibus autem excepturi ad vitae odit eligendi impedit tenetur quis tempora quaerat, repellat laboriosam inventore quasi, aut distinctio. Enim, impedit.</p>
+			</div>
+		</div>
+		<div class="comment">
+			<img src="https://picsum.photos/64" alt="">
+			<div>
+				<p>
+					<strong>Auteur</strong>
+					-
+					<strong>Date</strong>
+				</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, mollitia temporibus autem excepturi ad vitae odit eligendi impedit tenetur quis tempora quaerat, repellat laboriosam inventore quasi, aut distinctio. Enim, impedit.</p>
+			</div>
+		</div>
+		<div class="comment">
+			<img src="https://picsum.photos/64" alt="">
+			<form>
+				<textarea name="comment" id="comment" cols="30" rows="5" required></textarea>
+				<button>Soumettre</button>
+			</form>
+		</div>
 	</section>
 {% endblock %}

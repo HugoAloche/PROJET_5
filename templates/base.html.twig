@@ -11,17 +11,22 @@
 	<body>
 		<header>
 			<div>
-				<a href="index.php?action=home">
+				<a href="/">
 					<img src="/images/logo.png" alt="Logo du blog">
 				</a>
 				<p>Hugo Aloche</p>
 			</div>
 			<p class="header_title_errors_container"> {% block pageTitle %}{% endblock %}
-				{% for error in errors %}
-					<span class="error">{{error}}</span>
-				{% endfor %}
-				{% for success in success %}
-					<span class="success">{{success}}</span>
+				{% for key, flash in flashes %}
+					{% if key == 'error' %}
+						{% for error in flash %}
+							<span class="error">{{ error }}</span>
+						{% endfor %}
+					{% else %}
+						{% for success in flash %}
+							<span class="success">{{ success }}</span>
+						{% endfor %}
+					{% endif %}
 				{% endfor %}
 			</p>
 			<div>

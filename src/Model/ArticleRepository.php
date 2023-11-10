@@ -4,41 +4,49 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Service\Database;
+use App\Entity\Article;
+use ArrayObject;
+
 final class ArticleRepository
 {
-    public function __construct(private readonly \PDO $pdo)
+    public function __construct(private readonly Database $bdd)
     {
     }
 
-    public function findAll(): array
+    public function findAll(): ArrayObject
     {
-        $query = $this->pdo->prepare('SELECT * FROM article');
+        $this->bdd->connect();
+        $query = $this->bdd->prepare('SELECT * FROM article');
         $query->execute();
-        return $query->fetchAll();
+        $data = $query->fetchAll();
+        $articles = new ArrayObject();
+        foreach ($data as $article) {
+            $articles->append(new Article(
+                $article['idarticle'],
+                $article['title'],
+                $article['content'],
+                $article['chapo'],
+                $article['creationDate'],
+                $article['updateDate']
+            ));
+        }
+        return $articles;
     }
 
-    public function findOneById(int $id): array
+    public function findOneById(int $id): ?Article
     {
-        $query = $this->pdo->prepare('SELECT * FROM article WHERE idarticle = :id');
+        $this->bdd->connect();
+        $query = $this->bdd->prepare('SELECT * FROM article WHERE idarticle = :id');
         $query->execute(['id' => $id]);
-        return $query->fetch();
-    }
-
-    public function insert(array $data): void
-    {
-        $query = $this->pdo->prepare('INSERT INTO article (title, chapo, content, author, created_at, src, alt) VALUES (:title, :chapo, :content, :author, :created_at, :src, :alt)');
-        $query->execute($data);
-    }
-
-    public function update(array $data): void
-    {
-        $query = $this->pdo->prepare('UPDATE article SET title = :title, chapo = :chapo, content = :content, author = :author, created_at = :created_at, src = :src, alt = :alt WHERE id = :id');
-        $query->execute($data);
-    }
-
-    public function delete(int $id): void
-    {
-        $query = $this->pdo->prepare('DELETE FROM article WHERE id = :id');
-        $query->execute(['id' => $id]);
+        $data = $query->fetch();
+        return new Article(
+            $data['idarticle'],
+            $data['title'],
+            $data['content'],
+            $data['chapo'],
+            $data['creationDate'],
+            $data['updateDate']
+        );
     }
 }
