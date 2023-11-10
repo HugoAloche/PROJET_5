@@ -35,12 +35,35 @@ section.section_articles {
     justify-content: center;
 }
 
+section.article_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+section.article_container article {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 800px;
+}
+
+section.article_container img {
+    width: 100%;
+    object-fit: contain;
+}
+
+section.article_container .article_content {
+    width: 100%;
+    text-align: justify;
+}
+
 a {
     text-decoration: none;
     color: inherit;
 }
 
-article {
+section:not(.article_container) article {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -52,7 +75,7 @@ article {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-article .article_header {
+section:not(.article_container) article .article_header {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -144,4 +167,30 @@ span.success::before {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.comments_container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.comments_container .comment {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    width: 800px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comments_container .comment img {
+    object-fit: contain;
+    border-radius: 100%;
+}
+
+.comments_container .comment form {
+    width: 100%;
+    max-width: inherit;
 }

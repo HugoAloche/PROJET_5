@@ -6,7 +6,7 @@ namespace App\Service\Http\Session;
 
 final class Session
 {
-    private readonly SessionParametersBag $sessionParamBag; // $_SESSION
+    private readonly SessionParametersBag $sessionParamBag;
 
     public function __construct()
     {
@@ -34,9 +34,17 @@ final class Session
         $this->sessionParamBag->unset($name);
     }
 
-    public function addFlashes(string $type, string $message): void
+    public function addFlashes(string $type, string|array $message): void
     {
-        $this->set('flashes', [$type => $message]);
+        $flashes = $this->get('flashes');
+        if (is_array($message)) {
+            foreach ($message as $msg) {
+                $flashes[$type][] = $msg;
+            }
+        } else {
+            $flashes[$type][] = $message;
+        }
+        $this->set('flashes', $flashes);
     }
 
     public function getFlashes(): ?array
