@@ -18,6 +18,10 @@ final class SendEmail
         $message = $this->request->request()->get('message');
         $nom = $this->request->request()->get('nom');
         $prenom = $this->request->request()->get('prenom');
-        return mail('haloche035@gmail.com', 'Contact', "Message de $prenom $nom : $message", "From: $email");
+        try {
+            return mail('haloche035@gmail.com', 'Contact', "Message de $prenom $nom : $message", "From: $email");
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }
