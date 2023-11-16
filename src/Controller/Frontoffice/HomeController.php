@@ -9,13 +9,14 @@ use App\Service\Http\Response;
 use App\Service\Http\Request;
 use App\Service\Http\Session\Session;
 use App\Service\FormValidator\ContactValidator;
-use App\Model\ArticleRepository;
+use App\Model\Repository\ArticleRepository;
 use App\Service\SendEmail;
+use App\Service\Http\Redirect;
 
 
 final class HomeController
 {
-    public function __construct(private readonly View $view, private readonly Session $session, private readonly ContactValidator $contactValidator, private readonly ArticleRepository $articleRepository, private readonly SendEmail $sendEmail)
+    public function __construct(private readonly View $view, private readonly Session $session, private readonly ContactValidator $contactValidator, private readonly ArticleRepository $articleRepository, private readonly SendEmail $sendEmail, private readonly Redirect $redirect)
     {
     }
 
@@ -27,6 +28,7 @@ final class HomeController
                 $isSend = $this->sendEmail->sendContact();
                 if ($isSend) {
                     $this->session->addFlashes('success', 'Votre message a bien été envoyé');
+                    $this->redirect->to('/action?=home');
                 } else {
                     $this->session->addFlashes('error', 'Une erreur est survenue lors de l\'envoi de votre message');
                 }

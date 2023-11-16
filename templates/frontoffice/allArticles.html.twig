@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block title %}L'article :
+{% endblock %}
+{% block pageTitle %}L'article :
+	{{article.title}}
+{% endblock %}
+{% block content %}
+	<section class="article_container">
+		{% for article in articles %}
+			<article>
+				<h1>{{article.title}}</h1>
+				<div class="row">
+					<img src="https://picsum.photos/1920/1080" alt="">
+					<div>
+						<p>Auteur - Date</p>
+						<p class="article_content">{{article.chapo}}</p>
+					</div>
+				</div>
+			</article>
+			<a href="index.php?action=article&id={{article.idarticle}}">
+				<button>Voir plus</button>
+			</a>
+		{% endfor %}
+	</section>
+{% endblock %}
